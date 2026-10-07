@@ -2,7 +2,6 @@ package com.berlinclock.api.service;
 
 import com.berlinclock.api.model.BerlinClockTimeState;
 import com.berlinclock.api.utils.ClockColor;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalTime;
