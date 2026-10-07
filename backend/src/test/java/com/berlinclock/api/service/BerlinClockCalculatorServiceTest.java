@@ -72,4 +72,49 @@ class BerlinClockCalculatorServiceTest {
                 berlinClockTimeState.singleHoursLamps()
         );
     }
+
+    @Test
+    void twenty_seven_minutes_should_fill_five_minute_row() {
+
+        var berlinClockCalculatorService = new BerlinClockCalculatorService();
+
+        BerlinClockTimeState berlinClockTimeState =
+                berlinClockCalculatorService.calculateBerlinClockTime(
+                        LocalTime.of(13, 27));
+        assertEquals(
+                List.of(
+                        ClockColor.YELLOW,
+                        ClockColor.YELLOW,
+                        ClockColor.RED,
+                        ClockColor.YELLOW,
+                        ClockColor.YELLOW,
+                        ClockColor.OFF,
+                        ClockColor.OFF,
+                        ClockColor.OFF,
+                        ClockColor.OFF,
+                        ClockColor.OFF,
+                        ClockColor.OFF
+                ),
+                berlinClockTimeState.fiveMinutesLamps()
+        );
+    }
+
+    @Test
+    void twenty_seven_minutes_should_display_two_single_minute_lamps_on() {
+
+        var berlinClockCalculatorService = new BerlinClockCalculatorService();
+
+        BerlinClockTimeState berlinClockTimeState =
+                berlinClockCalculatorService.calculateBerlinClockTime(LocalTime.of(13, 27));
+
+        assertEquals(
+                List.of(
+                        ClockColor.YELLOW,
+                        ClockColor.YELLOW,
+                        ClockColor.OFF,
+                        ClockColor.OFF
+                ),
+                berlinClockTimeState.singleMinutesLamps()
+        );
+    }
 }

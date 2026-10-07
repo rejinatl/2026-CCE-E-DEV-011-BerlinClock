@@ -18,12 +18,18 @@ public class BerlinClockCalculatorService {
         int singleHours = time.getHour() % 5;
         List<ClockColor> singleHoursLamps = calculateSingleHoursLamps(singleHours);
 
+        int fiveMinuteLamps = time.getMinute() / 5;
+        var fiveMinutesLamps = calculateFiveMinutesLamps(fiveMinuteLamps);
+
+        int singleMinutes = time.getMinute() % 5;
+        List<ClockColor> singleMinutesLamps = calculateSingleMinutesLamps(singleMinutes);
+
         return new BerlinClockTimeState(
                 secondsLamp,
                 fiveHoursLamps,
                 singleHoursLamps,
-                List.of(),
-                List.of()
+                fiveMinutesLamps,
+                singleMinutesLamps
         );
     }
 
@@ -45,12 +51,40 @@ public class BerlinClockCalculatorService {
                 fiveHourLamp > 3 ? ClockColor.RED : ClockColor.OFF
         );
     }
+
     private List<ClockColor> calculateSingleHoursLamps(int singleHours) {
         return List.of(
                 singleHours > 0 ? ClockColor.RED : ClockColor.OFF,
                 singleHours > 1 ? ClockColor.RED : ClockColor.OFF,
                 singleHours > 2 ? ClockColor.RED : ClockColor.OFF,
                 singleHours > 3 ? ClockColor.RED : ClockColor.OFF
+        );
+    }
+
+    private List<ClockColor> calculateFiveMinutesLamps(int fiveMinuteLamps) {
+
+        var fiveMinuteRow =  new java.util.ArrayList<ClockColor>();
+
+        for (int position = 1; position <= 11; position++) {
+
+            if (position > fiveMinuteLamps) {
+                fiveMinuteRow.add(ClockColor.OFF);
+            } else if (position % 3 == 0) {
+                fiveMinuteRow.add(ClockColor.RED);
+            } else {
+                fiveMinuteRow.add(ClockColor.YELLOW);
+            }
+        }
+        return fiveMinuteRow;
+    }
+
+    private List<ClockColor> calculateSingleMinutesLamps(int singleMinutes) {
+
+        return List.of(
+                singleMinutes > 0 ? ClockColor.YELLOW : ClockColor.OFF,
+                singleMinutes > 1 ? ClockColor.YELLOW : ClockColor.OFF,
+                singleMinutes > 2 ? ClockColor.YELLOW : ClockColor.OFF,
+                singleMinutes > 3 ? ClockColor.YELLOW : ClockColor.OFF
         );
     }
 
