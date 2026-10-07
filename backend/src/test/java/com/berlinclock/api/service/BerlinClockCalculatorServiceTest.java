@@ -13,10 +13,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BerlinClockCalculatorServiceTest {
 
+    private final BerlinClockCalculatorService berlinClockCalculatorService =
+            new BerlinClockCalculatorService();
+
     @Test
     void even_seconds_should_show_yellow_light_on_seconds_lamp() {
-
-        var berlinClockCalculatorService = new BerlinClockCalculatorService();
 
         BerlinClockTimeState berlinClockTimeState =
                 berlinClockCalculatorService.calculateBerlinClockTime(LocalTime.of(13, 27, 42));
@@ -27,8 +28,6 @@ class BerlinClockCalculatorServiceTest {
     @Test
     void odd_seconds_should_show_off_light_on_seconds_lamp() {
 
-        var berlinClockCalculatorService = new BerlinClockCalculatorService();
-
         BerlinClockTimeState berlinClockTimeState =
                 berlinClockCalculatorService.calculateBerlinClockTime(LocalTime.of(13, 27, 41));
 
@@ -37,8 +36,6 @@ class BerlinClockCalculatorServiceTest {
 
     @Test
     void twelve_hours_should_show_two_five_hour_lamps() {
-
-        var berlinClockCalculatorService = new BerlinClockCalculatorService();
 
         BerlinClockTimeState berlinClockTimeState =
                 berlinClockCalculatorService.calculateBerlinClockTime(
@@ -57,8 +54,6 @@ class BerlinClockCalculatorServiceTest {
     @Test
     void twelve_hours_should_display_two_single_hour_lamps() {
 
-        var berlinClockCalculatorService = new BerlinClockCalculatorService();
-
         BerlinClockTimeState berlinClockTimeState =
                 berlinClockCalculatorService.
                         calculateBerlinClockTime(LocalTime.of(12, 0));
@@ -75,8 +70,6 @@ class BerlinClockCalculatorServiceTest {
 
     @Test
     void twenty_seven_minutes_should_fill_five_minute_row() {
-
-        var berlinClockCalculatorService = new BerlinClockCalculatorService();
 
         BerlinClockTimeState berlinClockTimeState =
                 berlinClockCalculatorService.calculateBerlinClockTime(
@@ -101,8 +94,6 @@ class BerlinClockCalculatorServiceTest {
 
     @Test
     void twenty_seven_minutes_should_display_two_single_minute_lamps_on() {
-
-        var berlinClockCalculatorService = new BerlinClockCalculatorService();
 
         BerlinClockTimeState berlinClockTimeState =
                 berlinClockCalculatorService.calculateBerlinClockTime(LocalTime.of(13, 27));
