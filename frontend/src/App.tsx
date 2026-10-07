@@ -1,12 +1,15 @@
+import './App.css'
+import { BerlinClock } from "./components/BerlinClock"
+
 function App() {
 
   return (
     <>
-        <section id="center">
-        Hello React!
-      </section>
+       <section id="center">
+        <h1>Berlin Clock</h1>
 
-      <section id="spacer"></section>
+          <BerlinClock />
+      </section>
     </>
   )
 }
