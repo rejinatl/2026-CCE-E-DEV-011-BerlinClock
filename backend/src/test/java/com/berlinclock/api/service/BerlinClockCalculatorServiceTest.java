@@ -1,9 +1,11 @@
 package com.berlinclock.api.service;
 
 import com.berlinclock.api.model.BerlinClockTimeState;
+import com.berlinclock.api.utils.ClockColor;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalTime;
+import java.util.List;
 
 import static com.berlinclock.api.utils.ClockColor.OFF;
 import static com.berlinclock.api.utils.ClockColor.YELLOW;
@@ -31,5 +33,24 @@ class BerlinClockCalculatorServiceTest {
                 berlinClockCalculatorService.calculateBerlinClockTime(LocalTime.of(13, 27, 41));
 
         assertEquals(OFF, berlinClockTimeState.secondsLamp());
+    }
+
+    @Test
+    void twelve_hours_should_show_two_five_hour_lamps() {
+
+        var berlinClockCalculatorService = new BerlinClockCalculatorService();
+
+        BerlinClockTimeState berlinClockTimeState =
+                berlinClockCalculatorService.calculateBerlinClockTime(
+                        LocalTime.of(12, 0));
+
+        assertEquals(List.of(
+                        ClockColor.RED,
+                        ClockColor.RED,
+                        ClockColor.OFF,
+                        ClockColor.OFF
+                ),
+                berlinClockTimeState.fiveHoursLamps()
+        );
     }
 }

@@ -12,9 +12,12 @@ public class BerlinClockCalculatorService {
 
         ClockColor secondsLamp = calculateSecondsLamp(time);
 
+        int fiveHourLamp = time.getHour() / 5;
+        List<ClockColor> fiveHoursLamps = calculateFiveHoursLamps(fiveHourLamp);
+
         return new BerlinClockTimeState(
                 secondsLamp,
-                List.of(),
+                fiveHoursLamps,
                 List.of(),
                 List.of(),
                 List.of()
@@ -28,5 +31,15 @@ public class BerlinClockCalculatorService {
         } else {
             return ClockColor.OFF;
         }
+    }
+
+    private List<ClockColor> calculateFiveHoursLamps(int fiveHourLamp) {
+
+        return List.of(
+                fiveHourLamp > 0 ? ClockColor.RED : ClockColor.OFF,
+                fiveHourLamp > 1 ? ClockColor.RED : ClockColor.OFF,
+                fiveHourLamp > 2 ? ClockColor.RED : ClockColor.OFF,
+                fiveHourLamp > 3 ? ClockColor.RED : ClockColor.OFF
+        );
     }
 }
