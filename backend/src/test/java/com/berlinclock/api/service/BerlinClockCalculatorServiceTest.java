@@ -53,4 +53,23 @@ class BerlinClockCalculatorServiceTest {
                 berlinClockTimeState.fiveHoursLamps()
         );
     }
+
+    @Test
+    void twelve_hours_should_display_two_single_hour_lamps() {
+
+        var berlinClockCalculatorService = new BerlinClockCalculatorService();
+
+        BerlinClockTimeState berlinClockTimeState =
+                berlinClockCalculatorService.
+                        calculateBerlinClockTime(LocalTime.of(12, 0));
+        assertEquals(
+                List.of(
+                        ClockColor.RED,
+                        ClockColor.RED,
+                        ClockColor.OFF,
+                        ClockColor.OFF
+                ),
+                berlinClockTimeState.singleHoursLamps()
+        );
+    }
 }
