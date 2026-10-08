@@ -67,6 +67,7 @@ Spring Boot API (8088)
 ```
 
 Make sure both applications are running at the same time.
+> **Note:** If you change the backend port in `src/main/resources/application.yml`, make sure to update the corresponding backend port in the Vite proxy configuration in the frontend `vite.config.ts`.
 
 ## Backend setup (IntelliJ)
 
